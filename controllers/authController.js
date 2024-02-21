@@ -105,7 +105,44 @@ export const accountActivationbyOTP = asyncHandler(async (req, res) => {
   const activationToken = tokenDecode(token);
 
   //   Video 1.16.10
+  // Verify Token
+  const verifyTokent = jwt.verify(activationToken, process.env.SECRET_KEY);
 
+  if (!verifyTokent) {
+    return res.status(400).json({ message: "Invalid Token" });
+  }
+
+  // Activate User Verify
+  let activeUser = null;
+
+  if (isEmail(verifyTokent.auth)) {
+    activeUser = await User.findOne({ email: verifyTokent.auth });
+
+    if (!activeUser) {
+      return res.status(400).json({ message: "Invalid Email Address" });
+    }
+  } else if (isMobile(verifyTokent.auth)) {
+    activeUser = await User.findOne({ phone: verifyTokent.auth });
+
+    if (!activeUser) {
+      return res.status(400).json({ message: "Invalid Phone Number" });
+    }
+  } else {
+    return res.status(400).json({ message: "Invalid User Information" });
+  }
+
+  // Check OTP
+  if (otp !== activeUser.accessToken) {
+    return res.status(400).json({ message: "OTP Doesn't Match" });
+  }
+
+  // Update activate User Data
+  activeUser.isActive = true;
+  activeUser.accessToken = null;
+  activeUser.save();
+
+  // Clear Cookie
+  res.clearCookie("activationToken");
   //   Response
-  res.status(200).json({ message: "User Verified" });
+  res.status(200).json({ message: "User Activation Successfull" });
 });
