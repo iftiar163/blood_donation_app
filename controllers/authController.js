@@ -184,4 +184,40 @@ export const userLogin = asyncHandler(async (req, res) => {
   }
 
   // Password Check
+  const passwordCheck = bcrypt.compareSync(password, loginuser.password);
+
+  // Password Validation
+  if (!passwordCheck) {
+    res.status(400).json({ message: "Invalid Password" });
+  }
+
+  // User Login Access Token
+  const accessToken = jwt.sign({ auth: auth }, process.env.USER_LOGIN_KEY, {
+    expiresIn: "365d",
+  });
+
+  // Set Token
+  res.cookie("accessToken", accessToken, {
+    httpOnly: true,
+    secure: process.env.APP_ENV == "Development" ? false : true,
+    sameSite: "strict",
+    path: "/",
+    maxAge: 1000 * 60 * 60 * 24 * 365,
+  });
+
+  // Logged In Successfull
+  res.status(200).json({
+    accessToken,
+    user: loginuser,
+    message: "User Logged In Successful",
+  });
 });
+
+/**
+ * @description Got to Profile
+ * @method GET
+ * @route api/v1/auth/profile
+ * @access public
+ */
+
+export const tokenVerifys = asyncHandler(async (req, res) => {});

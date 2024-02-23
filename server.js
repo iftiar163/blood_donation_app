@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import userRouter from "./routes/users.js";
 import authRouter from "./routes/auth.js";
 import mongodbConnections from "./config/mongodb.js";
+import cookieParser from "cookie-parser";
 
 // Initialiazation
 const app = express();
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 9090;
 // Set Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // Static Folder
 app.use(express.static("public"));
