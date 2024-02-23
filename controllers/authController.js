@@ -146,3 +146,42 @@ export const accountActivationbyOTP = asyncHandler(async (req, res) => {
   //   Response
   res.status(200).json({ message: "User Activation Successfull" });
 });
+
+/**
+ * @description User Login
+ * @method GET
+ * @route api/v1/auth/login
+ * @access public
+ */
+
+export const userLogin = asyncHandler(async (req, res) => {
+  // Get Auth Async
+  const { auth, password } = req.body;
+
+  // Check Auth Fields
+  if (!auth || !password) {
+    res.status(400).json({ message: "All Fields Are Required" });
+  }
+
+  // Check Auth Validity
+  let loginuser = null;
+  if (isEmail(auth)) {
+    // Find Login User
+    loginuser = await User.findOne({ email: auth });
+    // User Data Mathc
+    if (!loginuser) {
+      res.status(404).json({ message: "User Email Not Found" });
+    }
+  } else if (isMobile(auth)) {
+    // Find Login User
+    loginuser = await User.findOne({ phone: auth });
+    // User Data Mathc
+    if (!loginuser) {
+      res.status(404).json({ message: "User Phone Not Found" });
+    }
+  } else {
+    res.status(400).json({ message: "User Not Found" });
+  }
+
+  // Password Check
+});
