@@ -50,6 +50,11 @@ const userSchema = mongoose.Schema(
     gallery: {
       type: [String],
     },
+    role: {
+      type: String,
+      default: "user",
+      enum: ["user", "doner", "admin"],
+    },
     isActive: {
       type: Boolean,
       default: false,
