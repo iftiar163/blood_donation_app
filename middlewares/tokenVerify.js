@@ -1,10 +1,12 @@
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
+import { isEmail, isMobile } from "../helpers/helpers.js";
+import User from "../models/User.js";
 
 // Create Token Verify Middleware
 const tokentVerify = (req, res, next) => {
   // Get Server Token
-  const accessToken = res.cookies.accessToken;
+  const accessToken = req.cookies.accessToken;
 
   //   check token
   if (!accessToken) {
@@ -19,8 +21,20 @@ const tokentVerify = (req, res, next) => {
       if (error) {
         return res.status(400).json({ message: "Invalid Token" });
       }
-      console.log(decode);
-      //   1:15min
+
+      // Get User Data
+      let me = null;
+
+      if (isEmail(decode.auth)) {
+        me = await User.findOne({ email: decode.auth }).select("-password");
+      } else if (isMobile(decode.auth)) {
+        me = await User.findOne({ phone: decode.auth }).select("-password");
+      } else {
+        return res.status(400).json({ message: "Invalid Authentication" });
+      }
+
+      req.loginuser = me;
+      next();
     })
   );
 };

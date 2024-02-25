@@ -220,4 +220,6 @@ export const userLogin = asyncHandler(async (req, res) => {
  * @access public
  */
 
-export const tokenVerifys = asyncHandler(async (req, res) => {});
+export const tokenVerifys = asyncHandler(async (req, res) => {
+  console.log(req.loginuser);
+});
