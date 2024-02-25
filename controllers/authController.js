@@ -214,12 +214,28 @@ export const userLogin = asyncHandler(async (req, res) => {
 });
 
 /**
- * @description Got to Profile
+ * @description get Logged In User
  * @method GET
- * @route api/v1/auth/profile
- * @access public
+ * @route api/v1/auth/me
+ * @access private
  */
 
-export const tokenVerifys = asyncHandler(async (req, res) => {
-  console.log(req.loginuser);
+export const getLoggedInUser = asyncHandler(async (req, res) => {
+  if (!req.loginuser) {
+    res.status(400).json({ message: "User Not Logged In" });
+  }
+
+  res.status(200).json({ auth: req.loginuser, message: "User Logged In" });
+});
+
+/**
+ * @description User Logout
+ * @method POST
+ * @route api/v1/auth/logout
+ * @access private
+ */
+
+export const userLogout = asyncHandler(async (req, res) => {
+  res.clearCookie("accessToken");
+  res.status(200).json({ message: "User Logged Out" });
 });
