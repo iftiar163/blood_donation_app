@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
-<head>
+    <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+		<meta name="keywords" content="practo clone, doccure, doctor appointment, Practo clone html template, doctor booking template">
+		<meta name="author" content="Practo Clone HTML Template - Doctor Booking Template">
+		<meta property="og:url" content="https://doccure.dreamstechnologies.com/html/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Doctors Appointment HTML Website Templates | Doccure">
+		<meta property="og:description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+		<meta property="og:image" content="assets/img/preview-banner.jpg">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:domain" content="https://doccure.dreamstechnologies.com/html/">
+		<meta property="twitter:url" content="https://doccure.dreamstechnologies.com/html/">
+		<meta name="twitter:title" content="Doctors Appointment HTML Website Templates | Doccure">
+		<meta name="twitter:description" content="The responsive professional Doccure template offers many features, like scheduling appointments with  top doctors, clinics, and hospitals via voice, video call & chat.">
+		<meta name="twitter:image" content="assets/img/preview-banner.jpg">	
         <title>Doccure - Doctor List Page</title>
 		
 		<!-- Favicon -->
@@ -14,7 +26,8 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 		
 		<!-- Fontawesome CSS -->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 		
 		<!-- Feathericon CSS -->
         <link rel="stylesheet" href="assets/css/feathericon.min.css">
@@ -23,12 +36,8 @@
 		<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
 		
 		<!-- Main CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
-		
-		<!--[if lt IE 9]>
-			<script src="assets/js/html5shiv.min.js"></script>
-			<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
+        <link rel="stylesheet" href="assets/css/custom.css">
+        
     </head>
     <body>
 	
@@ -71,8 +80,8 @@
 
 					<!-- Notifications -->
 					<li class="nav-item dropdown noti-dropdown">
-						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-							<i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
+						<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+							<i class="fe fe-bell"></i> <span class="badge rounded-pill">3</span>
 						</a>
 						<div class="dropdown-menu notifications">
 							<div class="topnav-dropdown-header">
@@ -83,11 +92,11 @@
 								<ul class="notification-list">
 									<li class="notification-message">
 										<a href="#">
-											<div class="media">
-												<span class="avatar avatar-sm">
+											<div class="notify-block d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
 													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg">
 												</span>
-												<div class="media-body">
+												<div class="media-body flex-grow-1">
 													<p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
 													<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
 												</div>
@@ -96,11 +105,11 @@
 									</li>
 									<li class="notification-message">
 										<a href="#">
-											<div class="media">
-												<span class="avatar avatar-sm">
+											<div class="notify-block d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
 													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg">
 												</span>
-												<div class="media-body">
+												<div class="media-body flex-grow-1">
 													<p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
 													<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
 												</div>
@@ -109,11 +118,11 @@
 									</li>
 									<li class="notification-message">
 										<a href="#">
-											<div class="media">
-												<span class="avatar avatar-sm">
+											<div class="notify-block d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
 													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg">
 												</span>
-												<div class="media-body">
+												<div class="media-body flex-grow-1">
 												<p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
 												<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
 												</div>
@@ -122,11 +131,11 @@
 									</li>
 									<li class="notification-message">
 										<a href="#">
-											<div class="media">
-												<span class="avatar avatar-sm">
+											<div class="notify-block d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
 													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg">
 												</span>
-												<div class="media-body">
+												<div class="media-body flex-grow-1">
 													<p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
 													<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
 												</div>
@@ -144,7 +153,7 @@
 					
 					<!-- User Menu -->
 					<li class="nav-item dropdown has-arrow">
-						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+						<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
 							<span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor"></span>
 						</a>
 						<div class="dropdown-menu">
@@ -317,20 +326,19 @@
 													<th>Member Since</th>
 													<th>Earned</th>
 													<th>Account Status</th>
-													
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Ruby Perrin</a>
 														</h2>
 													</td>
 													<td>Dental</td>
 													
-													<td>14 Jan 2019 <br><small>02.59 AM</small></td>
+													<td>14 Jan 2023 <br><small>02.59 AM</small></td>
 													
 													<td>$3100.00</td>
 													
@@ -344,27 +352,27 @@
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Darren Elder</a>
 														</h2>
 													</td>
 													<td>Dental</td>
 													
-													<td>11 Jun 2019 <br><small>4.50 AM</small></td>
+													<td>11 Jun 2023 <br><small>4.50 AM</small></td>
 													
 													<td>$5000.00</td>
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_2" class="check" checked>
+															<label for="status_2" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Deborah Angel</a>
 														</h2>
 													</td>
@@ -376,75 +384,75 @@
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_3" class="check" checked>
+															<label for="status_3" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-04.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Sofia Brient</a>
 														</h2>
 													</td>
 													<td>Urology</td>
 													
-													<td>5 Jul 2019 <br><small>12.59 AM</small></td>
+													<td>5 Jul 2023 <br><small>12.59 AM</small></td>
 													
 													<td>$3500.00</td>
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_4" class="check" checked>
+															<label for="status_4" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-05.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Marvin Campbell</a>
 														</h2>
 													</td>
 													<td>Orthopaedics</td>
 													
-													<td>24 Jan 2019 <br><small>02.59 AM</small></td>
+													<td>24 Jan 2023 <br><small>02.59 AM</small></td>
 													
 													<td>$3700.00</td>
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_5" class="check" checked>
+															<label for="status_5" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-06.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Katharine Berthold</a>
 														</h2>
 													</td>
 													<td>Orthopaedics</td>
 													
-													<td>23 Mar 2019 <br><small>02.50 PM</small></td>
+													<td>23 Mar 2023 <br><small>02.50 PM</small></td>
 													
 													<td>$4000.00</td>
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_6" class="check" checked>
+															<label for="status_6" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-07.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Linda Tobin</a>
 														</h2>
 													</td>
@@ -456,35 +464,35 @@
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_7" class="check" checked>
+															<label for="status_7" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-08.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Paul Richard</a>
 														</h2>
 													</td>
 													<td>Dermatology</td>
 													
-													<td>11 Jan 2019 <br><small>02.59 AM</small></td>
+													<td>11 Jan 2023 <br><small>02.59 AM</small></td>
 													
 													<td>$3000.00</td>
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_8" class="check" checked>
+															<label for="status_8" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-09.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. John Gibbs</a>
 														</h2>
 													</td>
@@ -496,15 +504,15 @@
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_9" class="check" checked>
+															<label for="status_9" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image"></a>
+															<a href="profile.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-10.jpg" alt="User Image"></a>
 															<a href="profile.html">Dr. Olga Barlow</a>
 														</h2>
 													</td>
@@ -516,8 +524,8 @@
 													
 													<td>
 														<div class="status-toggle">
-															<input type="checkbox" id="status_1" class="check" checked>
-															<label for="status_1" class="checktoggle">checkbox</label>
+															<input type="checkbox" id="status_10" class="check" checked>
+															<label for="status_10" class="checktoggle">checkbox</label>
 														</div>
 													</td>
 												</tr>
@@ -537,11 +545,10 @@
 		<!-- /Main Wrapper -->
 		
 		<!-- jQuery -->
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
 		
 		<!-- Bootstrap Core JS -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
 		
 		<!-- Slimscroll JS -->
         <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -554,6 +561,4 @@
 		<script  src="assets/js/script.js"></script>
 		
     </body>
-
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
 </html>

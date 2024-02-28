@@ -1,5 +1,5 @@
 /*
-Author       : Dreamguys
+Author       : Dreamstechnologies
 Template Name: Doccure - Bootstrap Template
 Version      : 1.0
 */
@@ -29,23 +29,23 @@ Version      : 1.0
 
     $(".add-education").on('click', function () {
 		
-		var educationcontent = '<div class="row form-row education-cont">' +
+		var educationcontent = '<div class="row education-cont">' +
 			'<div class="col-12 col-md-10 col-lg-11">' +
-				'<div class="row form-row">' +
+				'<div class="row">' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
-						'<div class="form-group">' +
+						'<div class="mb-3">' +
 							'<label>Degree</label>' +
 							'<input type="text" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
-						'<div class="form-group">' +
+						'<div class="mb-3">' +
 							'<label>College/Institute</label>' +
 							'<input type="text" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
-						'<div class="form-group">' +
+						'<div class="mb-3">' +
 							'<label>Year of Completion</label>' +
 							'<input type="text" class="form-control">' +
 						'</div>' +
@@ -68,29 +68,29 @@ Version      : 1.0
 
     $(".add-experience").on('click', function () {
 		
-		var experiencecontent = '<div class="row form-row experience-cont">' +
+		var experiencecontent = '<div class="row experience-cont">' +
 			'<div class="col-12 col-md-10 col-lg-11">' +
-				'<div class="row form-row">' +
+				'<div class="row">' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
-						'<div class="form-group">' +
+						'<div class="mb-3">' +
 							'<label>Hospital Name</label>' +
 							'<input type="text" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
-						'<div class="form-group">' +
+						'<div class="mb-3">' +
 							'<label>From</label>' +
 							'<input type="text" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
-						'<div class="form-group">' +
+						'<div class="mb-3">' +
 							'<label>To</label>' +
 							'<input type="text" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
-						'<div class="form-group">' +
+						'<div class="mb-3">' +
 							'<label>Designation</label>' +
 							'<input type="text" class="form-control">' +
 						'</div>' +
@@ -113,15 +113,15 @@ Version      : 1.0
 
     $(".add-award").on('click', function () {
 
-        var regcontent = '<div class="row form-row awards-cont">' +
+        var regcontent = '<div class="row awards-cont">' +
 			'<div class="col-12 col-md-5">' +
-				'<div class="form-group">' +
+				'<div class="mb-3">' +
 					'<label>Awards</label>' +
 					'<input type="text" class="form-control">' +
 				'</div>' +
 			'</div>' +
 			'<div class="col-12 col-md-5">' +
-				'<div class="form-group">' +
+				'<div class="mb-3">' +
 					'<label>Year</label>' +
 					'<input type="text" class="form-control">' +
 				'</div>' +
@@ -145,9 +145,9 @@ Version      : 1.0
 
     $(".add-membership").on('click', function () {
 
-        var membershipcontent = '<div class="row form-row membership-cont">' +
+        var membershipcontent = '<div class="row membership-cont">' +
 			'<div class="col-12 col-md-10 col-lg-5">' +
-				'<div class="form-group">' +
+				'<div class="mb-3">' +
 					'<label>Memberships</label>' +
 					'<input type="text" class="form-control">' +
 				'</div>' +
@@ -171,15 +171,15 @@ Version      : 1.0
 
     $(".add-reg").on('click', function () {
 
-        var regcontent = '<div class="row form-row reg-cont">' +
+        var regcontent = '<div class="row reg-cont">' +
 			'<div class="col-12 col-md-5">' +
-				'<div class="form-group">' +
+				'<div class="mb-3">' +
 					'<label>Registrations</label>' +
 					'<input type="text" class="form-control">' +
 				'</div>' +
 			'</div>' +
 			'<div class="col-12 col-md-5">' +
-				'<div class="form-group">' +
+				'<div class="mb-3">' +
 					'<label>Year</label>' +
 					'<input type="text" class="form-control">' +
 				'</div>' +
