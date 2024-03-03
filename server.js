@@ -5,6 +5,7 @@ import userRouter from "./routes/users.js";
 import authRouter from "./routes/auth.js";
 import mongodbConnections from "./config/mongodb.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 // Initialiazation
 const app = express();
@@ -17,6 +18,12 @@ const PORT = process.env.PORT || 9090;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: ["http://localhost:3000/"],
+    credentials: true,
+  })
+);
 
 // Static Folder
 app.use(express.static("public"));

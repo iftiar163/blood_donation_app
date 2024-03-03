@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import banner from "../../assets/frontend/img/donor_camp.jpg";
 
 const Login = () => {
@@ -72,7 +73,7 @@ const Login = () => {
                         </div>
                         <div className="text-center dont-have">
                           Don’t have an account?{" "}
-                          <a href="register.html">Register</a>
+                          <Link to="/register">Register</Link>
                         </div>
                       </form>
                     </div>

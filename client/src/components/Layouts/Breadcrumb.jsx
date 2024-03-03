@@ -5,7 +5,7 @@ const Breadcrumb = () => {
   const { pathname } = useLocation();
 
   // BreadCrumb Access List
-  const breadCrumbs = ["/login", "/register"];
+  const breadCrumbs = ["/login", "/register", "/donor-register"];
   if (!breadCrumbs.includes(pathname)) {
     return (
       <>

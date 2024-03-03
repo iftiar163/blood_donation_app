@@ -1,4 +1,5 @@
 import { Layouts } from "../components/Layouts/Layouts";
+import DonorRegister from "../pages/Auth/DonorRegister";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import Dashboard from "../pages/Dashboard/Dashboard";
@@ -19,6 +20,10 @@ export const publicRouter = [
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/donor-register",
+        element: <DonorRegister />,
       },
     ],
   },
