@@ -42,7 +42,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     // Check Duplicate Email
     const checkEmail = await User.findOne({ email: auth });
     if (checkEmail) {
-      return res.status(200).json({ message: "Email Alreadt Exists" });
+      return res.status(400).json({ message: "Email Alreadt Exists" });
     }
   } else if (isMobile(auth)) {
     authMobile = auth;

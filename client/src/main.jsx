@@ -10,6 +10,7 @@ import "./assets/frontend/css/feather.css";
 import "./assets/frontend/plugins/apex/apexcharts.css";
 import "./assets/frontend/css/custom.css";
 import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

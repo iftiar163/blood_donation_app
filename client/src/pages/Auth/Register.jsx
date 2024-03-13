@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import banner from "../../assets/frontend/img/donor_camp.jpg";
 import useForm from "../../hooks/useForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerPatient } from "../../features/auth/authApiSlice";
+import { alertMesasgeReset, authSelector } from "../../features/auth/authSlice";
+import { useEffect } from "react";
+import createAlert from "../../utils/toastify";
 
 const Register = () => {
+  const { error, message, loading } = useSelector(authSelector);
   const dispatch = useDispatch();
 
   // Form Data
@@ -18,6 +22,20 @@ const Register = () => {
   const handlePatientCreate = () => {
     dispatch(registerPatient(input));
   };
+
+  // Use effect
+  useEffect(() => {
+    if (message) {
+      createAlert(message, "success");
+      dispatch(alertMesasgeReset());
+      resetForm();
+    }
+
+    if (error) {
+      createAlert(error);
+      dispatch(alertMesasgeReset());
+    }
+  }, [message, error, dispatch, resetForm]);
 
   return (
     <>
