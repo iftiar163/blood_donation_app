@@ -20,7 +20,7 @@ import { AccountActivationEmail } from "../mails/AccountActivationMail.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
   // Get data from Form
-  const { name, auth, password } = req.body;
+  const { name, auth, password, role } = req.body;
 
   //   Create OTP
   const otp = createOTP();
@@ -66,6 +66,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     phone: authMobile,
     password: passEncrypt,
     accessToken: otp,
+    role: role,
   });
 
   //   WebToken

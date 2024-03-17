@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import createAlert from "../../utils/toastify";
 
 const Register = () => {
-  const { error, message, loading } = useSelector(authSelector);
+  const { error, message, loader } = useSelector(authSelector);
   const dispatch = useDispatch();
 
   // Form Data
@@ -16,11 +16,17 @@ const Register = () => {
     name: "",
     auth: "",
     password: "",
+    role: "patient",
+    conpass: "",
   });
 
   // Create Data For Patient
   const handlePatientCreate = () => {
-    dispatch(registerPatient(input));
+    if (input.password !== input.conpass) {
+      createAlert("Password Doen't Match");
+    } else {
+      dispatch(registerPatient(input));
+    }
   };
 
   // Use effect
@@ -95,6 +101,16 @@ const Register = () => {
                       />
                       <label className="focus-label">Create Password</label>
                     </div>
+                    <div className="mb-3 form-focus">
+                      <input
+                        type="password"
+                        className="form-control floating"
+                        name="conpass"
+                        value={input.conpass}
+                        onChange={handleInputChange}
+                      />
+                      <label className="focus-label">Create Password</label>
+                    </div>
                     <div className="text-end">
                       <a className="forgot-link" href="login.html">
                         Already have an account?
@@ -104,7 +120,7 @@ const Register = () => {
                       className="btn btn-primary w-100 btn-lg login-btn"
                       onClick={handlePatientCreate}
                     >
-                      Signup
+                      {loader ? "Creating . . ." : "Signup"}
                     </button>
                     <div className="login-or">
                       <span className="or-line" />

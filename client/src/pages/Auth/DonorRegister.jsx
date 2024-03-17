@@ -1,7 +1,49 @@
+import { useDispatch, useSelector } from "react-redux";
 import banner from "../../assets/frontend/img/donor_camp.jpg";
 import { Link } from "react-router-dom";
+import { alertMesasgeReset, authSelector } from "../../features/auth/authSlice";
+import useForm from "../../hooks/useForm";
+import { useEffect } from "react";
+import createAlert from "../../utils/toastify";
+import { registerDonor } from "../../features/auth/authApiSlice";
 
 const DonorRegister = () => {
+  const { error, message, loader } = useSelector(authSelector);
+  const dispatch = useDispatch();
+
+  // Form Data
+  const { input, handleInputChange, resetForm } = useForm({
+    name: "",
+    auth: "",
+    password: "",
+    role: "donor",
+    conpass: "",
+  });
+
+  // Handle Donor Register
+  const handleDonorRegister = (e) => {
+    e.preventDefault();
+
+    if (input.password !== input.conpass) {
+      createAlert("Password Doesn't match");
+    } else {
+      dispatch(registerDonor(input));
+    }
+  };
+
+  // Use effect
+  useEffect(() => {
+    if (message) {
+      createAlert(message, "success");
+      dispatch(alertMesasgeReset());
+      resetForm();
+    }
+
+    if (error) {
+      createAlert(error);
+      dispatch(alertMesasgeReset());
+    }
+  }, [message, error, dispatch, resetForm]);
   return (
     <>
       {/* Page Content */}
@@ -27,21 +69,48 @@ const DonorRegister = () => {
                       </h3>
                     </div>
                     {/* Register Form */}
-                    <form action="patient-register-step1.html">
+                    <form onSubmit={handleDonorRegister}>
                       <div className="mb-3 form-focus">
-                        <input type="text" className="form-control floating" />
+                        <input
+                          type="text"
+                          className="form-control floating"
+                          name="name"
+                          value={input.name}
+                          onChange={handleInputChange}
+                        />
                         <label className="focus-label">Name</label>
                       </div>
                       <div className="mb-3 form-focus">
-                        <input type="text" className="form-control floating" />
-                        <label className="focus-label">Mobile Number</label>
+                        <input
+                          type="text"
+                          className="form-control floating"
+                          name="auth"
+                          value={input.auth}
+                          onChange={handleInputChange}
+                        />
+                        <label className="focus-label">
+                          Mobile or Email Address
+                        </label>
                       </div>
                       <div className="mb-3 form-focus">
                         <input
                           type="password"
                           className="form-control floating"
+                          name="password"
+                          value={input.password}
+                          onChange={handleInputChange}
                         />
                         <label className="focus-label">Create Password</label>
+                      </div>
+                      <div className="mb-3 form-focus">
+                        <input
+                          type="password"
+                          className="form-control floating"
+                          name="conpass"
+                          value={input.conpass}
+                          onChange={handleInputChange}
+                        />
+                        <label className="focus-label">Confirm Password</label>
                       </div>
                       <div className="text-end">
                         <a className="forgot-link" href="login.html">
@@ -52,7 +121,7 @@ const DonorRegister = () => {
                         className="btn btn-primary w-100 btn-lg login-btn"
                         type="submit"
                       >
-                        Signup
+                        {loader ? "Creating . . ." : "Signup"}
                       </button>
                       <div className="login-or">
                         <span className="or-line" />
