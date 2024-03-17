@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import banner from "../../assets/frontend/img/donor_camp.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { alertMesasgeReset, authSelector } from "../../features/auth/authSlice";
 import useForm from "../../hooks/useForm";
 import { useEffect } from "react";
 import createAlert from "../../utils/toastify";
+import { userLogin } from "../../features/auth/authApiSlice";
 
 const Login = () => {
   const { error, message, loader } = useSelector(authSelector);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Form Data
   const { input, handleInputChange, resetForm } = useForm({
@@ -19,6 +21,7 @@ const Login = () => {
   // Handle User Login
   const handleUserLogin = (e) => {
     e.preventDefault();
+    dispatch(userLogin(input));
   };
 
   // Use effect
@@ -27,6 +30,7 @@ const Login = () => {
       createAlert(message, "success");
       dispatch(alertMesasgeReset());
       resetForm();
+      navigate("/dashboard");
     }
 
     if (error) {

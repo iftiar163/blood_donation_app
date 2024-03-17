@@ -4,8 +4,16 @@ import pt02 from "../../assets/frontend/img/specialities/pt-dashboard-02.png";
 import pt03 from "../../assets/frontend/img/specialities/pt-dashboard-03.png";
 import pt04 from "../../assets/frontend/img/shapes/graph-01.png";
 import pt05 from "../../assets/frontend/img/specialities/pt-dashboard-04.png";
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../features/auth/authApiSlice";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  const handleUserLogout = (e) => {
+    e.preventDefault();
+    dispatch(userLogout());
+  };
   return (
     <div className="main-wrapper">
       {/* Page Content */}
@@ -76,7 +84,7 @@ const Dashboard = () => {
                         </a>
                       </li>
                       <li>
-                        <a href="login.html">
+                        <a href="#" onClick={handleUserLogout}>
                           <i className="fas fa-sign-out-alt" />
                           <span>Logout</span>
                         </a>

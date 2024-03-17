@@ -38,3 +38,35 @@ export const registerDonor = createAsyncThunk(
     }
   }
 );
+
+// Register Donor Slice
+export const userLogin = createAsyncThunk("auth/userLogin", async (data) => {
+  try {
+    const response = await axios.post(
+      `http://localhost:5050/api/v1/auth/login`,
+      data,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
+
+// Logout User Slice
+export const userLogout = createAsyncThunk("auth/userLogout", async () => {
+  try {
+    const response = await axios.post(
+      `http://localhost:5050/api/v1/auth/logout`,
+
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+});
