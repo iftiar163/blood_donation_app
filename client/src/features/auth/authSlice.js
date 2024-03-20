@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  getLoggedInUser,
   registerDonor,
   registerPatient,
   userLogin,
@@ -72,6 +73,20 @@ const authSlice = createSlice({
         state.message = action.payload.message;
         state.user = null;
         localStorage.removeItem("loginUser");
+      })
+      .addCase(getLoggedInUser.pending, (state, action) => {
+        state.loader = true;
+      })
+      .addCase(getLoggedInUser.rejected, (state, action) => {
+        state.loader = false;
+        state.error = action.error.message;
+        state.user = null;
+        localStorage.removeItem("loginUser");
+      })
+      .addCase(getLoggedInUser.fulfilled, (state, action) => {
+        state.loader = false;
+        state.user = action.payload.auth;
+        localStorage.setItem("loginUser", JSON.stringify(action.payload.auth));
       });
   },
 });
