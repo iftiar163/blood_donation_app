@@ -1,8 +1,11 @@
 import avatar from "../../assets/frontend/img/patients/patient.jpg";
 import logos from "../../assets/frontend/img/logo.png";
 import { Link } from "react-router-dom";
+import Avatar from "../Avatar/Avatar";
+import userInfo from "../../hooks/userInfo";
 
 const Header = () => {
+  const { auth } = userInfo();
   return (
     <>
       {/* Header */}
@@ -351,13 +354,8 @@ const Header = () => {
                   className="dropdown-toggle nav-link"
                   data-bs-toggle="dropdown"
                 >
-                  <span className="user-img">
-                    <img
-                      className="rounded-circle"
-                      src={avatar}
-                      width={31}
-                      alt="Darren Elder"
-                    />
+                  <span className="user-img avatar-img rounded-circle">
+                    <Avatar url={auth.photo && auth.photo} />
                   </span>
                 </a>
                 <div className="dropdown-menu dropdown-menu-end">

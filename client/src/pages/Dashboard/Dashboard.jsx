@@ -6,9 +6,14 @@ import pt04 from "../../assets/frontend/img/shapes/graph-01.png";
 import pt05 from "../../assets/frontend/img/specialities/pt-dashboard-04.png";
 import { useDispatch } from "react-redux";
 import { userLogout } from "../../features/auth/authApiSlice";
+import userInfo from "../../hooks/userInfo";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+
+  const { auth } = userInfo();
+
+  console.log(auth);
 
   const handleUserLogout = (e) => {
     e.preventDefault();
@@ -26,7 +31,7 @@ const Dashboard = () => {
                 <div className="widget-profile pro-widget-content">
                   <div className="profile-info-widget">
                     <a href="#" className="booking-doc-img">
-                      <Avatar url="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg" />
+                      <Avatar url={auth.photo && auth.photo} />
                       {/* <img
                         src="assets/img/patients/patient.jpg"
                         alt="User Image"
@@ -34,14 +39,24 @@ const Dashboard = () => {
                     </a>
 
                     <div className="profile-det-info">
-                      <h3>Richard Wilson</h3>
+                      <h3>{auth.name}</h3>
                       <div className="patient-details">
-                        <h5>
-                          <i className="fas fa-birthday-cake" /> 24 Jul 1983, 38
-                          years
-                        </h5>
+                        {auth.birthDate && (
+                          <>
+                            <h5>
+                              <i className="fas fa-birthday-cake" />{" "}
+                              {auth.birthDate}
+                            </h5>
+                          </>
+                        )}
+
                         <h5 className="mb-0">
-                          <i className="fas fa-map-marker-alt" /> Newyork, USA
+                          {auth.address && (
+                            <>
+                              <i className="fas fa-map-marker-alt" />{" "}
+                              {auth.address}
+                            </>
+                          )}
                         </h5>
                       </div>
                     </div>

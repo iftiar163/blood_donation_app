@@ -42,6 +42,11 @@ const userSchema = mongoose.Schema(
       default: null,
       trim: true,
     },
+    birthDate: {
+      type: String,
+      default: null,
+      trim: true,
+    },
     lastDonation: {
       type: String,
       default: null,

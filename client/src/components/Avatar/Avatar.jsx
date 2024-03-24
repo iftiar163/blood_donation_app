@@ -1,9 +1,13 @@
-import avatar from "../../assets/frontend/img/patients/patient.jpg";
+import avatar from "../../assets/frontend/img/patients/avaterImg.jpg";
 
 const Avatar = ({ url }) => {
   return (
     <>
-      <img src={url ? url : avatar} alt="" />
+      <img
+        className="avatar-img rounded-circle"
+        src={url ? url : avatar}
+        alt=""
+      />
     </>
   );
 };

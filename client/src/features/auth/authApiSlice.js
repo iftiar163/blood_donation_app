@@ -47,7 +47,7 @@ export const userLogout = createAsyncThunk("auth/userLogout", async () => {
   }
 });
 
-// Logout User Slice
+// Get Loggedin User Slice
 export const getLoggedInUser = createAsyncThunk(
   "auth/getLoggedInUser",
   async () => {
