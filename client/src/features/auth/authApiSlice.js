@@ -1,18 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import API from "../../utils/api";
 
 // Register Patient api Slice
 export const registerPatient = createAsyncThunk(
   "auth/registerPatient",
   async (data) => {
     try {
-      const response = await axios.post(
-        `http://localhost:5050/api/v1/auth/register`,
-        data,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await API.post(`/api/v1/auth/register`, data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -25,13 +19,7 @@ export const registerDonor = createAsyncThunk(
   "auth/registerDonor",
   async (data) => {
     try {
-      const response = await axios.post(
-        `http://localhost:5050/api/v1/auth/register`,
-        data,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await API.post(`/api/v1/auth/register`, data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);
@@ -42,13 +30,7 @@ export const registerDonor = createAsyncThunk(
 // Register Donor Slice
 export const userLogin = createAsyncThunk("auth/userLogin", async (data) => {
   try {
-    const response = await axios.post(
-      `http://localhost:5050/api/v1/auth/login`,
-      data,
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await API.post(`/api/v1/auth/login`, data);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -58,13 +40,7 @@ export const userLogin = createAsyncThunk("auth/userLogin", async (data) => {
 // Logout User Slice
 export const userLogout = createAsyncThunk("auth/userLogout", async () => {
   try {
-    const response = await axios.post(
-      `http://localhost:5050/api/v1/auth/logout`,
-
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await API.post(`/api/v1/auth/logout`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -76,13 +52,7 @@ export const getLoggedInUser = createAsyncThunk(
   "auth/getLoggedInUser",
   async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5050/api/v1/auth/me`,
-
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await API.get(`/api/v1/auth/me`);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.message);

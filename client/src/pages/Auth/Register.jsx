@@ -112,9 +112,9 @@ const Register = () => {
                       <label className="focus-label">Create Password</label>
                     </div>
                     <div className="text-end">
-                      <a className="forgot-link" href="login.html">
+                      <Link className="forgot-link" to="/login">
                         Already have an account?
-                      </a>
+                      </Link>
                     </div>
                     <button
                       className="btn btn-primary w-100 btn-lg login-btn"
