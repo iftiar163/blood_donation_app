@@ -355,7 +355,7 @@ const Header = () => {
                   data-bs-toggle="dropdown"
                 >
                   <span className="user-img avatar-img rounded-circle">
-                    <Avatar url={auth.photo && auth.photo} />
+                    <Avatar url={auth?.photo && auth.photo} />
                   </span>
                 </a>
                 <div className="dropdown-menu dropdown-menu-end">

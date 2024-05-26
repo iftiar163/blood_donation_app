@@ -19,10 +19,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
+	cors({
+		origin: "http://localhost:3000",
+		credentials: true,
+	})
 );
 
 // Static Folder
@@ -34,6 +34,6 @@ app.use("/api/v1/auth/", authRouter);
 
 // Server Init
 app.listen(PORT, () => {
-  console.log(`Server is Running On PORT ${PORT}`.bgGreen.black);
-  mongodbConnections();
+	console.log(`Server is Running On PORT ${PORT}`.bgGreen.black);
+	mongodbConnections();
 });
