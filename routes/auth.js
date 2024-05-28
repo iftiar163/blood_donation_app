@@ -1,10 +1,11 @@
 import express from "express";
 import {
-  accountActivationbyOTP,
-  getLoggedInUser,
-  registerUser,
-  userLogin,
-  userLogout,
+	accountActivationbyOTP,
+	changePassword,
+	getLoggedInUser,
+	registerUser,
+	userLogin,
+	userLogout,
 } from "../controllers/authController.js";
 import tokentVerify from "../middlewares/tokenVerify.js";
 
@@ -17,6 +18,7 @@ router.post("/login", userLogin);
 router.post("/account-activate-by-otp/:token", accountActivationbyOTP);
 router.get("/me", tokentVerify, getLoggedInUser);
 router.post("/logout", userLogout);
+router.post("/change-password", changePassword);
 
 // Export Router
 export default router;

@@ -1,10 +1,10 @@
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 import {
-  createOTP,
-  isEmail,
-  isMobile,
-  tokenDecode,
+	createOTP,
+	isEmail,
+	isMobile,
+	tokenDecode,
 } from "../helpers/helpers.js";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
@@ -19,76 +19,76 @@ import { AccountActivationEmail } from "../mails/AccountActivationMail.js";
  */
 
 export const registerUser = asyncHandler(async (req, res) => {
-  // Get data from Form
-  const { name, auth, password, role } = req.body;
+	// Get data from Form
+	const { name, auth, password, role } = req.body;
 
-  //   Create OTP
-  const otp = createOTP();
+	//   Create OTP
+	const otp = createOTP();
 
-  //   Form Validation
-  if (!name || !auth || !password) {
-    res.status(400).json({ message: "All Fields Are Required" });
-  }
+	//   Form Validation
+	if (!name || !auth || !password) {
+		res.status(400).json({ message: "All Fields Are Required" });
+	}
 
-  //   Check email or Phone number
-  let authEmail = "";
-  let authMobile = "";
+	//   Check email or Phone number
+	let authEmail = "";
+	let authMobile = "";
 
-  // check valid email address
+	// check valid email address
 
-  if (isEmail(auth)) {
-    authEmail = auth;
+	if (isEmail(auth)) {
+		authEmail = auth;
 
-    // Check Duplicate Email
-    const checkEmail = await User.findOne({ email: auth });
-    if (checkEmail) {
-      return res.status(400).json({ message: "Email Alreadt Exists" });
-    }
-  } else if (isMobile(auth)) {
-    authMobile = auth;
+		// Check Duplicate Email
+		const checkEmail = await User.findOne({ email: auth });
+		if (checkEmail) {
+			return res.status(400).json({ message: "Email Alreadt Exists" });
+		}
+	} else if (isMobile(auth)) {
+		authMobile = auth;
 
-    // Check Duplicate Mobile
-    const checkMobile = await User.findOne({ phone: auth });
-    if (checkMobile) {
-      return res.status(400).json({ message: "Phone Already Exists" });
-    }
-  } else {
-    res.status(400).json({ message: "Use A valid Phone or Email Address" });
-  }
+		// Check Duplicate Mobile
+		const checkMobile = await User.findOne({ phone: auth });
+		if (checkMobile) {
+			return res.status(400).json({ message: "Phone Already Exists" });
+		}
+	} else {
+		res.status(400).json({ message: "Use A valid Phone or Email Address" });
+	}
 
-  //   Hash Password
-  const passEncrypt = await bcrypt.hash(password, 10);
+	//   Hash Password
+	const passEncrypt = await bcrypt.hash(password, 10);
 
-  //   User Registration Data Create
-  const user = await User.create({
-    name,
-    email: authEmail,
-    phone: authMobile,
-    password: passEncrypt,
-    accessToken: otp,
-    role: role,
-  });
+	//   User Registration Data Create
+	const user = await User.create({
+		name,
+		email: authEmail,
+		phone: authMobile,
+		password: passEncrypt,
+		accessToken: otp,
+		role: role,
+	});
 
-  //   WebToken
-  if (user) {
-    // Send Token to Cookie
-    const activationToken = jwt.sign({ auth }, process.env.SECRET_KEY, {
-      expiresIn: "30min",
-    });
+	//   WebToken
+	if (user) {
+		// Send Token to Cookie
+		const activationToken = jwt.sign({ auth }, process.env.SECRET_KEY, {
+			expiresIn: "30min",
+		});
 
-    res.cookie("activationToken", activationToken);
+		res.cookie("activationToken", activationToken);
 
-    if (authEmail) {
-      // Send Email Varification
-      await AccountActivationEmail(auth, { code: otp, link: "" });
-    } else if (authMobile) {
-      // Send OTP
-      await sendSMS(auth, `Your account activation Code is ${otp}`);
-    }
-  }
+		if (authEmail) {
+			// Send Email Varification
+			await AccountActivationEmail(auth, { code: otp, link: "" });
+		} else if (authMobile) {
+			// Send OTP
+			await sendSMS(auth, `Your account activation Code is ${otp}`);
+		}
+	}
 
-  //   Response
-  res.status(201).json({ user, message: "User Data Created Successfully" });
+	//   Response
+	res.status(201).json({ user, message: "User Data Created Successfully" });
 });
 
 /**
@@ -99,53 +99,53 @@ export const registerUser = asyncHandler(async (req, res) => {
  */
 
 export const accountActivationbyOTP = asyncHandler(async (req, res) => {
-  const { token } = req.params;
-  const { otp } = req.body;
+	const { token } = req.params;
+	const { otp } = req.body;
 
-  // Token Decode
-  const activationToken = tokenDecode(token);
+	// Token Decode
+	const activationToken = tokenDecode(token);
 
-  //   Video 1.16.10
-  // Verify Token
-  const verifyTokent = jwt.verify(activationToken, process.env.SECRET_KEY);
+	//   Video 1.16.10
+	// Verify Token
+	const verifyTokent = jwt.verify(activationToken, process.env.SECRET_KEY);
 
-  if (!verifyTokent) {
-    return res.status(400).json({ message: "Invalid Token" });
-  }
+	if (!verifyTokent) {
+		return res.status(400).json({ message: "Invalid Token" });
+	}
 
-  // Activate User Verify
-  let activeUser = null;
+	// Activate User Verify
+	let activeUser = null;
 
-  if (isEmail(verifyTokent.auth)) {
-    activeUser = await User.findOne({ email: verifyTokent.auth });
+	if (isEmail(verifyTokent.auth)) {
+		activeUser = await User.findOne({ email: verifyTokent.auth });
 
-    if (!activeUser) {
-      return res.status(400).json({ message: "Invalid Email Address" });
-    }
-  } else if (isMobile(verifyTokent.auth)) {
-    activeUser = await User.findOne({ phone: verifyTokent.auth });
+		if (!activeUser) {
+			return res.status(400).json({ message: "Invalid Email Address" });
+		}
+	} else if (isMobile(verifyTokent.auth)) {
+		activeUser = await User.findOne({ phone: verifyTokent.auth });
 
-    if (!activeUser) {
-      return res.status(400).json({ message: "Invalid Phone Number" });
-    }
-  } else {
-    return res.status(400).json({ message: "Invalid User Information" });
-  }
+		if (!activeUser) {
+			return res.status(400).json({ message: "Invalid Phone Number" });
+		}
+	} else {
+		return res.status(400).json({ message: "Invalid User Information" });
+	}
 
-  // Check OTP
-  if (otp !== activeUser.accessToken) {
-    return res.status(400).json({ message: "OTP Doesn't Match" });
-  }
+	// Check OTP
+	if (otp !== activeUser.accessToken) {
+		return res.status(400).json({ message: "OTP Doesn't Match" });
+	}
 
-  // Update activate User Data
-  activeUser.isActive = true;
-  activeUser.accessToken = null;
-  activeUser.save();
+	// Update activate User Data
+	activeUser.isActive = true;
+	activeUser.accessToken = null;
+	activeUser.save();
 
-  // Clear Cookie
-  res.clearCookie("activationToken");
-  //   Response
-  res.status(200).json({ message: "User Activation Successfull" });
+	// Clear Cookie
+	res.clearCookie("activationToken");
+	//   Response
+	res.status(200).json({ message: "User Activation Successfull" });
 });
 
 /**
@@ -156,62 +156,62 @@ export const accountActivationbyOTP = asyncHandler(async (req, res) => {
  */
 
 export const userLogin = asyncHandler(async (req, res) => {
-  // Get Auth Async
-  const { auth, password } = req.body;
+	// Get Auth Async
+	const { auth, password } = req.body;
 
-  // Check Auth Fields
-  if (!auth || !password) {
-    res.status(400).json({ message: "All Fields Are Required" });
-  }
+	// Check Auth Fields
+	if (!auth || !password) {
+		res.status(400).json({ message: "All Fields Are Required" });
+	}
 
-  // Check Auth Validity
-  let loginuser = null;
-  if (isEmail(auth)) {
-    // Find Login User
-    loginuser = await User.findOne({ email: auth });
-    // User Data Mathc
-    if (!loginuser) {
-      res.status(404).json({ message: "User Email Not Found" });
-    }
-  } else if (isMobile(auth)) {
-    // Find Login User
-    loginuser = await User.findOne({ phone: auth });
-    // User Data Mathc
-    if (!loginuser) {
-      res.status(404).json({ message: "User Phone Not Found" });
-    }
-  } else {
-    res.status(400).json({ message: "User Not Found" });
-  }
+	// Check Auth Validity
+	let loginuser = null;
+	if (isEmail(auth)) {
+		// Find Login User
+		loginuser = await User.findOne({ email: auth });
+		// User Data Mathc
+		if (!loginuser) {
+			res.status(404).json({ message: "User Email Not Found" });
+		}
+	} else if (isMobile(auth)) {
+		// Find Login User
+		loginuser = await User.findOne({ phone: auth });
+		// User Data Mathc
+		if (!loginuser) {
+			res.status(404).json({ message: "User Phone Not Found" });
+		}
+	} else {
+		res.status(400).json({ message: "User Not Found" });
+	}
 
-  // Password Check
-  const passwordCheck = bcrypt.compareSync(password, loginuser.password);
+	// Password Check
+	const passwordCheck = bcrypt.compareSync(password, loginuser.password);
 
-  // Password Validation
-  if (!passwordCheck) {
-    res.status(400).json({ message: "Invalid Password" });
-  }
+	// Password Validation
+	if (!passwordCheck) {
+		res.status(400).json({ message: "Invalid Password" });
+	}
 
-  // User Login Access Token
-  const accessToken = jwt.sign({ auth: auth }, process.env.USER_LOGIN_KEY, {
-    expiresIn: "365d",
-  });
+	// User Login Access Token
+	const accessToken = jwt.sign({ auth: auth }, process.env.USER_LOGIN_KEY, {
+		expiresIn: "365d",
+	});
 
-  // Set Token
-  res.cookie("accessToken", accessToken, {
-    httpOnly: true,
-    secure: process.env.APP_ENV == "Development" ? false : true,
-    sameSite: "strict",
-    path: "/",
-    maxAge: 1000 * 60 * 60 * 24 * 365,
-  });
+	// Set Token
+	res.cookie("accessToken", accessToken, {
+		httpOnly: true,
+		secure: process.env.APP_ENV == "Development" ? false : true,
+		sameSite: "strict",
+		path: "/",
+		maxAge: 1000 * 60 * 60 * 24 * 365,
+	});
 
-  // Logged In Successfull
-  res.status(200).json({
-    accessToken,
-    user: loginuser,
-    message: "User Logged In Successful",
-  });
+	// Logged In Successfull
+	res.status(200).json({
+		accessToken,
+		user: loginuser,
+		message: "User Logged In Successful",
+	});
 });
 
 /**
@@ -222,11 +222,11 @@ export const userLogin = asyncHandler(async (req, res) => {
  */
 
 export const getLoggedInUser = asyncHandler(async (req, res) => {
-  if (!req.loginuser) {
-    res.status(400).json({ message: "User Not Logged In" });
-  }
+	if (!req.loginuser) {
+		res.status(400).json({ message: "User Not Logged In" });
+	}
 
-  res.status(200).json({ auth: req.loginuser, message: "User Logged In" });
+	res.status(200).json({ auth: req.loginuser, message: "User Logged In" });
 });
 
 /**
@@ -237,6 +237,17 @@ export const getLoggedInUser = asyncHandler(async (req, res) => {
  */
 
 export const userLogout = asyncHandler(async (req, res) => {
-  res.clearCookie("accessToken");
-  res.status(200).json({ message: "User Logged Out" });
+	res.clearCookie("accessToken");
+	res.status(200).json({ message: "User Logged Out" });
+});
+
+/**
+ * @description Change Password
+ * @method POST
+ * @route api/v1/auth/change-password
+ * @access private
+ */
+
+export const changePassword = asyncHandler(async (req, res) => {
+	console.log(req.body);
 });

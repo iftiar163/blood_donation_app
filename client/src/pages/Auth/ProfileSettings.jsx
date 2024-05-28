@@ -1,4 +1,8 @@
+import Avatar from "../../components/Avatar/Avatar";
+import userInfo from "../../hooks/userInfo";
+
 const ProfileSettings = () => {
+	const { auth } = userInfo();
 	return (
 		<>
 			<div className="card">
@@ -10,10 +14,7 @@ const ProfileSettings = () => {
 								<div className="mb-3">
 									<div className="change-avatar">
 										<div className="profile-img">
-											<img
-												src="assets/img/patients/patient.jpg"
-												alt="User Image"
-											/>
+											<Avatar url={auth.photo && auth.photo} />
 										</div>
 										<div className="upload-img">
 											<div className="change-photo-btn">
@@ -31,21 +32,11 @@ const ProfileSettings = () => {
 							</div>
 							<div className="col-12 col-md-6">
 								<div className="mb-3">
-									<label className="mb-2">First Name</label>
+									<label className="mb-2">Full Name</label>
 									<input
 										type="text"
 										className="form-control"
-										defaultValue="Richard"
-									/>
-								</div>
-							</div>
-							<div className="col-12 col-md-6">
-								<div className="mb-3">
-									<label className="mb-2">Last Name</label>
-									<input
-										type="text"
-										className="form-control"
-										defaultValue="Wilson"
+										value={auth?.name}
 									/>
 								</div>
 							</div>
@@ -65,7 +56,7 @@ const ProfileSettings = () => {
 								<div className="mb-3">
 									<label className="mb-2">Blood Group</label>
 									<select className="form-select form-control">
-										<option>A-</option>
+										<option>-- Select --</option>
 										<option>A+</option>
 										<option>B-</option>
 										<option>B+</option>
@@ -82,7 +73,7 @@ const ProfileSettings = () => {
 									<input
 										type="email"
 										className="form-control"
-										defaultValue="richard@example.com"
+										value={auth?.email}
 									/>
 								</div>
 							</div>
@@ -91,19 +82,25 @@ const ProfileSettings = () => {
 									<label className="mb-2">Mobile</label>
 									<input
 										type="text"
-										defaultValue="+1 202-555-0125"
+										value={auth?.phone}
+										className="form-control"
+									/>
+								</div>
+							</div>
+							<div className="col-12 col-md-6">
+								<div className="mb-3">
+									<label className="mb-2">Address</label>
+									<input
+										type="text"
+										value={auth?.address}
 										className="form-control"
 									/>
 								</div>
 							</div>
 							<div className="col-12">
 								<div className="mb-3">
-									<label className="mb-2">Address</label>
-									<input
-										type="text"
-										className="form-control"
-										defaultValue="806 Twin Willow Lane"
-									/>
+									<label className="mb-2">Bio</label>
+									<input type="text" className="form-control" value="" />
 								</div>
 							</div>
 							<div className="col-12 col-md-6">

@@ -25,7 +25,7 @@ const Dashboard = () => {
 								<div className="widget-profile pro-widget-content">
 									<div className="profile-info-widget">
 										<a href="#" className="booking-doc-img">
-											<Avatar url={auth.photo && auth.photo} />
+											<Avatar url={auth?.photo && auth.photo} />
 											{/* <img
                         src="assets/img/patients/patient.jpg"
                         alt="User Image"
@@ -60,10 +60,10 @@ const Dashboard = () => {
 									<nav className="dashboard-menu">
 										<ul>
 											<li className="active">
-												<a href="patient-dashboard.html">
+												<Link to="dashboard-ui">
 													<i className="fas fa-columns" />
 													<span>Dashboard</span>
-												</a>
+												</Link>
 											</li>
 											<li>
 												<a href="favourites.html">
