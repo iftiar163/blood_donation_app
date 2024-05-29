@@ -249,5 +249,30 @@ export const userLogout = asyncHandler(async (req, res) => {
  */
 
 export const changePassword = asyncHandler(async (req, res) => {
-	console.log(req.body);
+	const { oldPass, newPass, confPass } = req.body;
+
+	// Password Empty Fields Check
+	if (!oldPass || !newPass || !confPass) {
+		return res.status(404).json({ message: "All Fields Are Required" });
+	}
+
+	// New Password Match
+	if (newPass !== confPass) {
+		return res.status(404).json({ message: "New Password Doesn't Match" });
+	}
+
+	// Check Old Password
+	const user = await User.findById(req.loginuser._id);
+
+	if (!bcrypt.compareSync(oldPass, user.password)) {
+		return res.status(404).json({ message: "Current Password Doesn't Match" });
+	}
+
+	// Hash New Password
+	const hassPass = await bcrypt.hash(newPass, 10);
+
+	user.password = hassPass;
+	user.save();
+
+	return res.status(200).json({ message: "New Password Saved" });
 });

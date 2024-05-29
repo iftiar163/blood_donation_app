@@ -18,7 +18,7 @@ router.post("/login", userLogin);
 router.post("/account-activate-by-otp/:token", accountActivationbyOTP);
 router.get("/me", tokentVerify, getLoggedInUser);
 router.post("/logout", userLogout);
-router.post("/change-password", changePassword);
+router.post("/change-password", tokentVerify, changePassword);
 
 // Export Router
 export default router;

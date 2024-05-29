@@ -1,11 +1,15 @@
+import { useEffect } from "react";
 import { changeAuthPassword } from "../../features/auth/authApiSlice";
+import { alertMesasgeReset, authSelector } from "../../features/auth/authSlice";
 import useForm from "../../hooks/useForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import createAlert from "../../utils/toastify";
 
 const PasswordChange = () => {
+	const { error, message, loader } = useSelector(authSelector);
 	const dispatch = useDispatch();
 
-	const { input, handleInputChange } = useForm({
+	const { input, handleInputChange, resetForm } = useForm({
 		oldPass: "",
 		newPass: "",
 		confPass: "",
@@ -15,6 +19,20 @@ const PasswordChange = () => {
 		e.preventDefault();
 		dispatch(changeAuthPassword(input));
 	};
+
+	// Use effect
+	useEffect(() => {
+		if (message) {
+			createAlert(message, "success");
+			dispatch(alertMesasgeReset());
+			resetForm();
+		}
+
+		if (error) {
+			createAlert(error);
+			dispatch(alertMesasgeReset());
+		}
+	}, [message, error, dispatch]);
 
 	return (
 		<>
