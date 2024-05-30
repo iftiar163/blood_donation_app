@@ -10,6 +10,7 @@ import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import { sendSMS } from "../utils/sendSMS.js";
 import { AccountActivationEmail } from "../mails/AccountActivationMail.js";
+import { fileUploadToCloud } from "../utils/cloudinary.js";
 
 /**
  * @description Register User
@@ -275,4 +276,21 @@ export const changePassword = asyncHandler(async (req, res) => {
 	user.save();
 
 	return res.status(200).json({ message: "New Password Saved" });
+});
+
+// Profile Photo Update
+
+export const profilePhotoUpdate = asyncHandler(async (req, res) => {
+	const fileData = await fileUploadToCloud(req.file.path);
+
+	const data = jwt.verify(req.cookies.accessToken, process.env.USER_LOGIN_KEY);
+
+	const profileData = await User.findOne({ email: data.auth });
+
+	profileData.photo = fileData.secure_url;
+	profileData.save();
+
+	return res
+		.status(200)
+		.json({ user: profileData, message: "User photo Uploaded successfully" });
 });

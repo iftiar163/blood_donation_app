@@ -4,6 +4,7 @@ import {
 	getLoggedInUser,
 	registerDonor,
 	registerPatient,
+	updateUserPhoto,
 	userLogin,
 	userLogout,
 } from "./authApiSlice";
@@ -99,6 +100,18 @@ const authSlice = createSlice({
 			.addCase(changeAuthPassword.fulfilled, (state, action) => {
 				state.loader = false;
 				state.message = action.payload.message;
+			})
+			.addCase(updateUserPhoto.pending, (state, action) => {
+				state.loader = true;
+			})
+			.addCase(updateUserPhoto.rejected, (state, action) => {
+				state.loader = false;
+				state.error = action.error.message;
+			})
+			.addCase(updateUserPhoto.fulfilled, (state, action) => {
+				state.loader = false;
+				state.message = action.payload.message;
+				state.user = action.payload.user;
 			});
 	},
 });

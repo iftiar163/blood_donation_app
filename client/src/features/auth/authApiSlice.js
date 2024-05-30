@@ -72,3 +72,16 @@ export const changeAuthPassword = createAsyncThunk(
 		}
 	}
 );
+
+// Update User Photo API
+export const updateUserPhoto = createAsyncThunk(
+	"auth/updateUserPhoto",
+	async (data) => {
+		try {
+			const response = await API.post(`/api/v1/auth/profile-photo`, data);
+			return response.data;
+		} catch (error) {
+			throw new Error(error.response.data.message);
+		}
+	}
+);
