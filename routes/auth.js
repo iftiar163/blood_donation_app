@@ -3,6 +3,7 @@ import {
 	accountActivationbyOTP,
 	changePassword,
 	getLoggedInUser,
+	profileDataUpdate,
 	profilePhotoUpdate,
 	registerUser,
 	userLogin,
@@ -22,6 +23,7 @@ router.get("/me", tokentVerify, getLoggedInUser);
 router.post("/logout", userLogout);
 router.post("/change-password", tokentVerify, changePassword);
 router.post("/profile-photo", profilePhoto, profilePhotoUpdate);
+router.post("/profile-update", tokentVerify, profileDataUpdate);
 
 // Export Router
 export default router;

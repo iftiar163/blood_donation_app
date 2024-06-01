@@ -85,3 +85,16 @@ export const updateUserPhoto = createAsyncThunk(
 		}
 	}
 );
+
+// Update User Profile data
+export const updateProfileData = createAsyncThunk(
+	"auth/updateProfileData",
+	async (data) => {
+		try {
+			const response = await API.post(`/api/v1/auth/profile-update`, data);
+			return response.data;
+		} catch (error) {
+			throw new Error(error.response.data.message);
+		}
+	}
+);

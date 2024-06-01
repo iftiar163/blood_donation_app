@@ -278,6 +278,13 @@ export const changePassword = asyncHandler(async (req, res) => {
 	return res.status(200).json({ message: "New Password Saved" });
 });
 
+/**
+ * @description Profile Photo Update
+ * @method POST
+ * @route api/v1/auth/profile-photo
+ * @access private
+ */
+
 // Profile Photo Update
 
 export const profilePhotoUpdate = asyncHandler(async (req, res) => {
@@ -293,4 +300,37 @@ export const profilePhotoUpdate = asyncHandler(async (req, res) => {
 	return res
 		.status(200)
 		.json({ user: profileData, message: "User photo Uploaded successfully" });
+});
+
+/**
+ * @description Profile Data Update
+ * @method POST
+ * @route api/v1/auth/profile-update
+ * @access private
+ */
+
+// Profile Data Update
+export const profileDataUpdate = asyncHandler(async (req, res) => {
+	const data = req.body;
+
+	// Check The User
+	const user = await User.findById(req.loginuser._id);
+
+	// Check Valid Emails
+	if (data.email !== req.loginuser.email) {
+		user.secondaryContact.push({
+			email: data.email,
+			verifyToken: createOTP(),
+		});
+	}
+
+	// Check Valid Phone
+	if (data.phone !== req.loginuser.phone) {
+		user.secondaryContact.push({
+			phone: data.phone,
+			verifyToken: createOTP(),
+		});
+	}
+
+	user.save();
 });

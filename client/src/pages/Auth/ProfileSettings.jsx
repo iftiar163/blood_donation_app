@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from "../../components/Avatar/Avatar";
 import userInfo from "../../hooks/userInfo";
-import { updateUserPhoto } from "../../features/auth/authApiSlice";
+import {
+	updateProfileData,
+	updateUserPhoto,
+} from "../../features/auth/authApiSlice";
 import { alertMesasgeReset, authSelector } from "../../features/auth/authSlice";
 import useForm from "../../hooks/useForm";
 import { useEffect } from "react";
@@ -21,6 +24,13 @@ const ProfileSettings = () => {
 		birthDate: auth.birthDate,
 		status: "",
 	});
+
+	// Handle Profile Update
+	const handleProfileUpdate = (e) => {
+		e.preventDefault();
+
+		dispatch(updateProfileData(input));
+	};
 
 	// Profile photo upload
 	const profilePhotoUpload = (e) => {
@@ -51,7 +61,7 @@ const ProfileSettings = () => {
 			<div className="card">
 				<div className="card-body">
 					{/* Profile Settings Form */}
-					<form>
+					<form onSubmit={handleProfileUpdate}>
 						<div className="row">
 							<div className="col-12 col-md-12">
 								<div className="mb-3">
