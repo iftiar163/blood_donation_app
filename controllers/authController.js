@@ -316,21 +316,12 @@ export const profileDataUpdate = asyncHandler(async (req, res) => {
 	// Check The User
 	const user = await User.findById(req.loginuser._id);
 
-	// Check Valid Emails
-	if (data.email !== req.loginuser.email) {
-		user.secondaryContact.push({
-			email: data.email,
-			verifyToken: createOTP(),
-		});
-	}
-
-	// Check Valid Phone
-	if (data.phone !== req.loginuser.phone) {
-		user.secondaryContact.push({
-			phone: data.phone,
-			verifyToken: createOTP(),
-		});
-	}
+	// Add Updated Data
+	user.name = req.body.name;
+	user.birthDate = req.body.birthDate;
+	user.bloodType = req.body.bloodType;
+	user.address = req.body.address;
+	user.bio = req.body.bio;
 
 	user.save();
 });
