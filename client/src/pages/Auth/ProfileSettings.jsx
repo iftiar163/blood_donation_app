@@ -106,7 +106,7 @@ const ProfileSettings = () => {
 									<label className="mb-2">Date of Birth</label>
 									<div className="cal-icon">
 										<input
-											type="text"
+											type="date"
 											className="form-control datetimepicker"
 											defaultValue="24-07-1983"
 											name="birthDate"
